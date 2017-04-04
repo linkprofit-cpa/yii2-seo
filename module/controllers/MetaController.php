@@ -33,7 +33,7 @@ class MetaController extends Controller
                             'delete-item',
                         ],
                         'allow' => true,
-                        'roles' => ['admin'],
+                        'roles' => ['seo'],
                     ],
                 ],
             ],

@@ -53,7 +53,7 @@ class Seo extends Object {
 
     public function _link()
     {
-        if (Yii::$app->user->can('admin') && !is_null($this->_page)) {
+        if (Yii::$app->user->can('seo') && !is_null($this->_page)) {
             echo Html::tag(
                 'div',
                 Html::a(
@@ -109,7 +109,7 @@ class Seo extends Object {
 
     protected function _view()
     {
-        $view = Yii::$app->controller->route;
+        $view = Yii::$app->language . '/' . Yii::$app->controller->route;
         if (strpos($view, 'debug') !== false || strpos($view, 'error') !== false) {
             return false;
         }

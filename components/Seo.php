@@ -109,7 +109,13 @@ class Seo extends Object {
 
     protected function _view()
     {
-        $view = Yii::$app->language . '/' . Yii::$app->controller->route;
+       if (Yii::$app->controller->id == 'site') {
+            $count = 1;
+            $url = str_replace('site/', '', Yii::$app->controller->route, $count);
+        } else {
+            $url = Yii::$app->controller->route;
+        }
+        $view = Yii::$app->language . '/' . $url;
         if (strpos($view, 'debug') !== false || strpos($view, 'error') !== false) {
             return false;
         }

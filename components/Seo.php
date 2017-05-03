@@ -115,7 +115,12 @@ class Seo extends Object {
         } else {
             $url = Yii::$app->controller->route;
         }
-        $view = Yii::$app->language . '/' . $url;
+        if (Yii::$app->language != 'ru') {
+            $view = Yii::$app->language . '/' . $url;
+        } else {
+            $view = $url;
+        }
+
         if (strpos($view, 'debug') !== false || strpos($view, 'error') !== false) {
             return false;
         }

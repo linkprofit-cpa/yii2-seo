@@ -31,6 +31,7 @@ class MetaController extends Controller
                             'update-item',
                             'delete',
                             'delete-item',
+                            'delete-all',
                         ],
                         'allow' => true,
                         'roles' => ['seo'],
@@ -152,6 +153,14 @@ class MetaController extends Controller
         $model->delete();
 
         return $this->redirect(['update', 'id' => $id]);
+    }
+
+    public function actionDeleteAll()
+    {
+        SeoMeta::deleteAll();
+        SeoPage::deleteAll();
+
+        return $this->redirect(['index']);
     }
 
     /**

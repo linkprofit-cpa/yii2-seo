@@ -27,7 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     return Html::a($url , $url, ['target' => '_blank']);
                 }
             ],
-            'view',
             'title.content:raw:Title',
             'keywords.content:raw:Keywords',
             'description.content:raw:Description',

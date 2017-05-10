@@ -15,17 +15,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
             [
                 'attribute' => '',
                 'label' => 'url',
                 'format' => 'raw',
                 'value' => function($model){
-                        $params = Json::decode($model->action_params);
-                        $params = ArrayHelper::merge([$model->view], $params);
-                        $url = Yii::$app->frontendUrlManager->createUrl($params);
-                        return Html::a($url , $url, ['target' => '_blank']);
-                    }
+                    $params = Json::decode($model->action_params);
+                    $params = ArrayHelper::merge([$model->view], $params);
+                    $url = Yii::$app->frontendUrlManager->createUrl($params);
+                    return Html::a($url , $url, ['target' => '_blank']);
+                }
             ],
+            'view',
             'title.content:raw:Title',
             'keywords.content:raw:Keywords',
             'description.content:raw:Description',

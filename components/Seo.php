@@ -74,8 +74,9 @@ class Seo extends Object {
     public function _meta_page()
     {
         $where['view'] = $this->_view();
-        $where['action_params'] = $this->_action_params();
+//        $where['action_params'] = $this->_action_params();
         $this->_page = SeoPage::find()->where($where)->with('meta')->asArray()->one();
+//        eval(\Psy\sh());
         if (!is_null($this->_page) && ($where['view'])) {
             $this->renderMeta();
         }
@@ -115,10 +116,14 @@ class Seo extends Object {
         } else {
             $url = Yii::$app->controller->route;
         }
-        if (Yii::$app->language != 'ru') {
-            $view = Yii::$app->language . '/' . $url;
+        if ($url == 'news/single') {
+           $view = Yii::$app->request->url;
         } else {
-            $view = $url;
+            if (Yii::$app->language != 'ru') {
+                $view = Yii::$app->language . '/' . $url;
+            } else {
+                $view = $url;
+            }
         }
 
         if (strpos($view, 'debug') !== false || strpos($view, 'error') !== false) {

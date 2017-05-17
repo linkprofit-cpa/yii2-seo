@@ -47,14 +47,32 @@ class MetaController extends Controller
         ];
     }
 
-    /**
+     /**
      * Lists all SeoMeta models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => SeoPage::find()->where(['OR', ['action_params' => '[]'], ['LIKE', 'action_params', 'slug']])->andWhere(['NOT LIKE', 'view', 'ajax'])->with(array_keys(SeoMeta::nameList()))->orderBy([new \yii\db\Expression('CASE WHEN `view` NOT LIKE \'en%\' THEN 1 ELSE 2 END')]),
+            'query' => SeoPage::find()->where(['OR', ['action_params' => '[]'], ['LIKE', 'action_params', 'slug']])->andWhere(['NOT LIKE', 'view', 'news'])->with(array_keys(SeoMeta::nameList()))->orderBy([new \yii\db\Expression('CASE WHEN `view` NOT LIKE \'en%\' THEN 1 ELSE 2 END')]),
+            'pagination' => [
+                'pageSize' => 100
+            ],
+        ]);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Lists all SeoMeta models.
+     * @return mixed
+     */
+    public function actionNews()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => SeoPage::find()->where(['LIKE', 'view', 'news'])->with(array_keys(SeoMeta::nameList()))->orderBy([new \yii\db\Expression('CASE WHEN `view` NOT LIKE \'en%\' THEN 1 ELSE 2 END')]),
             'pagination' => [
                 'pageSize' => 100
             ],

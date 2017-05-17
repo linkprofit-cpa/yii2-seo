@@ -27,6 +27,7 @@ class MetaController extends Controller
                     [
                         'actions' => [
                             'index',
+                            'news',
                             'update',
                             'update-item',
                             'delete',

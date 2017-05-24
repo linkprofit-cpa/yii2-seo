@@ -54,4 +54,12 @@ $this->params['breadcrumbs'][] = $this->title;
         text-overflow: ellipsis;
         max-width: 140px;
     }
+
+    tr > td:nth-child(4) {
+        overflow: hidden;
+        white-space: nowrap;
+        word-wrap: normal;
+        text-overflow: ellipsis;
+        max-width: 140px;
+    }
 </style>

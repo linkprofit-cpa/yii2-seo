@@ -11,6 +11,7 @@ use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use dektrium\user\filters\AccessRule;
 
 /**
  * MetaController implements the CRUD actions for SeoMeta model.
@@ -23,6 +24,9 @@ class MetaController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
                 'rules' => [
                     [
                         'actions' => [
@@ -33,7 +37,7 @@ class MetaController extends Controller
                             'delete-item',
                         ],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['admin'],
                     ],
                 ],
             ],

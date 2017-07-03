@@ -57,7 +57,7 @@ class MetaController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => SeoPage::find()->with(array_keys(SeoMeta::nameList()))->andWhere(['NOT LIKE', 'view', 'meta']),
+            'query' => SeoPage::find()->with(array_keys(SeoMeta::nameList()))->andWhere(['NOT LIKE', 'view', 'meta'])->andWhere(['NOT LIKE', 'view', 'user']),
             'pagination' => [
                 'pageSize' => 100
             ],

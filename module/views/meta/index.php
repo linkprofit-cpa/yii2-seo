@@ -37,3 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
 </div>
+<style>
+    .page {
+        background-color: white !important;
+    }
+</style>

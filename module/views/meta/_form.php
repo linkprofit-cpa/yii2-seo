@@ -24,3 +24,8 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+<style>
+    .page {
+        background-color: white !important;
+    }
+</style>

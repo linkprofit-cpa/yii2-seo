@@ -85,6 +85,25 @@ class MetaController extends Controller
     }
 
     /**
+     * Lists all SeoMeta models.
+     * @return mixed
+     */
+    public function actionBlog()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => SeoPage::find()->where(['LIKE', 'view', 'blog'])->with(array_keys(SeoMeta::nameList()))->orderBy([new \yii\db\Expression('CASE WHEN `view` NOT LIKE \'en/%\' THEN 1 ELSE 2 END')]),
+            'pagination' => [
+                'pageSize' => 100
+            ],
+        ]);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+
+    /**
      * Updates an existing SeoMeta model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id

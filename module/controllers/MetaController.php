@@ -74,7 +74,7 @@ class MetaController extends Controller
     public function actionNews()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => SeoPage::find()->where(['OR', ['LIKE', 'view', 'news'], ['LIKE', 'view', 'blog']])->with(array_keys(SeoMeta::nameList()))->orderBy([new \yii\db\Expression('CASE WHEN `view` NOT LIKE \'%en/%\' THEN 1 ELSE 2 END')]),
+            'query' => SeoPage::find()->where(['LIKE', 'view', 'news'])->with(array_keys(SeoMeta::nameList()))->orderBy([new \yii\db\Expression('CASE WHEN `view` NOT LIKE \'%en/%\' THEN 1 ELSE 2 END')]),
             'pagination' => [
                 'pageSize' => 100
             ],

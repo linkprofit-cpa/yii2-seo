@@ -49,3 +49,13 @@ $this->params['breadcrumbs'][] = 'Редактировать';
     ]); ?>
 
 </div>
+
+<style>
+    tr > td:nth-child(2) {
+        overflow: hidden;
+        white-space: nowrap;
+        word-wrap: normal;
+        text-overflow: ellipsis;
+        max-width: 140px;
+    }
+</style>

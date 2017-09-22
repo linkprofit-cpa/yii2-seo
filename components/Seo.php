@@ -116,7 +116,7 @@ class Seo extends Object {
         } else {
             $url = Yii::$app->controller->route;
         }
-        if ($url == 'news/single' || $url == 'vacancies' || $url === 'blog/single') {
+        if ($url == 'news/single' || $url == 'vacancies' || $url === 'blog/single' || $url == 'offers/single') {
            $view = Yii::$app->request->url;
         } else {
             if (Yii::$app->language != 'ru') {

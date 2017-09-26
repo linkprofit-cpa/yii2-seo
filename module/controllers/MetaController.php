@@ -29,6 +29,7 @@ class MetaController extends Controller
                             'index',
                             'news',
                             'blog',
+                            'offers',
                             'update',
                             'update-item',
                             'delete',
@@ -49,14 +50,14 @@ class MetaController extends Controller
         ];
     }
 
-     /**
+    /**
      * Lists all SeoMeta models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => SeoPage::find()->where(['OR', ['action_params' => '[]'], ['LIKE', 'action_params', 'slug']])->andWhere(['NOT LIKE', 'view', 'news'])->andWhere(['NOT LIKE', 'view', 'blog'])->andWhere(['NOT LIKE', 'view', 'ajax'])->with(array_keys(SeoMeta::nameList()))->orderBy([new \yii\db\Expression('CASE WHEN `view` NOT LIKE \'%en%\' THEN 1 ELSE 2 END')]),
+            'query' => SeoPage::find()->where(['OR', ['action_params' => '[]'], ['LIKE', 'action_params', 'slug']])->andWhere(['NOT LIKE', 'view', 'news'])->andWhere(['NOT LIKE', 'view', 'blog'])->andWhere(['NOT LIKE', 'view', 'ajax'])->andWhere(['NOT LIKE', 'view', '/offers/view/'])->with(array_keys(SeoMeta::nameList()))->orderBy([new \yii\db\Expression('CASE WHEN `view` NOT LIKE \'%en%\' THEN 1 ELSE 2 END')]),
             'pagination' => [
                 'pageSize' => 100
             ],
@@ -93,6 +94,24 @@ class MetaController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => SeoPage::find()->where(['LIKE', 'view', 'blog'])->with(array_keys(SeoMeta::nameList()))->orderBy([new \yii\db\Expression('CASE WHEN `view` NOT LIKE \'%en/%\' THEN 1 ELSE 2 END')]),
+            'pagination' => [
+                'pageSize' => 100
+            ],
+        ]);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Lists all SeoMeta models.
+     * @return mixed
+     */
+    public function actionOffers()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => SeoPage::find()->andWhere(['LIKE', 'view', 'offers'])->andWhere(['NOT LIKE', 'view', '/offers/view/'])->with(array_keys(SeoMeta::nameList()))->orderBy([new \yii\db\Expression('CASE WHEN `view` NOT LIKE \'%en/%\' THEN 1 ELSE 2 END')]),
             'pagination' => [
                 'pageSize' => 100
             ],

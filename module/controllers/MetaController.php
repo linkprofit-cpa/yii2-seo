@@ -57,7 +57,7 @@ class MetaController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => SeoPage::find()->where(['OR', ['action_params' => '[]'], ['LIKE', 'action_params', 'slug']])->andWhere(['NOT LIKE', 'view', 'news'])->andWhere(['NOT LIKE', 'view', 'blog'])->andWhere(['NOT LIKE', 'view', 'ajax'])->andWhere(['NOT LIKE', 'view', '/offers/view/'])->with(array_keys(SeoMeta::nameList()))->orderBy([new \yii\db\Expression('CASE WHEN `view` NOT LIKE \'%en%\' THEN 1 ELSE 2 END')]),
+            'query' => SeoPage::find()->where(['OR', ['action_params' => '[]'], ['LIKE', 'action_params', 'slug']])->andWhere(['NOT LIKE', 'view', 'news'])->andWhere(['NOT LIKE', 'view', 'blog'])->andWhere(['NOT LIKE', 'view', 'ajax'])->andWhere(['NOT LIKE', 'view', 'offers'])->with(array_keys(SeoMeta::nameList()))->orderBy([new \yii\db\Expression('CASE WHEN `view` NOT LIKE \'%en%\' THEN 1 ELSE 2 END')]),
             'pagination' => [
                 'pageSize' => 100
             ],

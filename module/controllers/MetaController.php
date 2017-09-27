@@ -111,7 +111,7 @@ class MetaController extends Controller
     public function actionOffers()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => SeoPage::find()->andWhere(['LIKE', 'view', 'offers'])->andWhere(['NOT LIKE', 'view', '/offers/view/'])->with(array_keys(SeoMeta::nameList()))->orderBy([new \yii\db\Expression('CASE WHEN `view` NOT LIKE \'%en/%\' THEN 1 ELSE 2 END')]),
+            'query' => SeoPage::find()->andWhere(['LIKE', 'view', 'offers'])->andWhere(['NOT LIKE', 'view', '/offers/view/'])->andWhere(['NOT LIKE', 'view', '?category'])->andWhere(['NOT LIKE', 'view', '?page'])->with(array_keys(SeoMeta::nameList()))->orderBy([new \yii\db\Expression('CASE WHEN `view` NOT LIKE \'%en/%\' THEN 1 ELSE 2 END')]),
             'pagination' => [
                 'pageSize' => 100
             ],

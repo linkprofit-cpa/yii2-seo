@@ -29,6 +29,7 @@ class MetaController extends Controller
                             'index',
                             'news',
                             'blog',
+                            'press',
                             'offers',
                             'update',
                             'update-item',

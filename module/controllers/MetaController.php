@@ -108,6 +108,24 @@ class MetaController extends Controller
      * Lists all SeoMeta models.
      * @return mixed
      */
+    public function actionPress()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => SeoPage::find()->where(['LIKE', 'view', 'press'])->with(array_keys(SeoMeta::nameList()))->orderBy([new \yii\db\Expression('CASE WHEN `view` NOT LIKE \'%en/%\' THEN 1 ELSE 2 END')]),
+            'pagination' => [
+                'pageSize' => 100
+            ],
+        ]);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Lists all SeoMeta models.
+     * @return mixed
+     */
     public function actionOffers()
     {
         $dataProvider = new ActiveDataProvider([

@@ -87,7 +87,7 @@ class Seo extends Object {
         if (is_null($this->_page)) {
             $page = new SeoPage();
             $page->view = $this->_view();
-            $page->action_params = $this->_action_params();
+            $page->action_params = '[]';
             $page->save();
             $this->_page = $page;
         }
